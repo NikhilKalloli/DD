@@ -1,0 +1,26 @@
+library ieee;
+use ieee. std_logic_1164.all;
+entity SR_FF is
+	port( S,R, CLOCK: in std_logic;
+	      Q, Qb: out std_logic);
+end SR_FF;
+architecture behavioral of SR_FF is
+begin
+	process(CLOCK)
+	variable TMP: std_logic:='0';
+	begin
+		if(rising_edge(CLOCK)) then
+			if(S='0' and R='0')then
+				TMP:=TMP;
+			elsif(S='1' and R='1')then
+				TMP:='X';
+			elsif(S='0' and R='1')then
+				TMP:='0';
+			else
+				TMP:='1';
+			end if;
+		end if;
+		Q <= TMP;
+		Qb <= not TMP;
+	end PROCESS;
+end behavioral;

@@ -1,0 +1,20 @@
+library ieee;
+use ieee. std_logic_1164.all;
+
+entity D_FF is
+PORT( D,CLOCK: in std_logic;
+Q,Qb: out std_logic);
+end D_FF;
+ 
+architecture behavioral of D_FF is
+begin
+process(CLOCK)
+  	variable TMP: std_logic;
+begin
+if(rising_edge(CLOCK)) then
+ 		 TMP :=D;
+end if;
+Q <= TMP;
+Qb<=not TMP;
+end process;
+end behavioral;
